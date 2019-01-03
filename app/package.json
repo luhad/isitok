@@ -1,0 +1,28 @@
+{
+  "name": "isitok",
+  "version": "1.0.0",
+  "description": "nodejs backend for monitoring application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.6.1",
+    "axios": "^0.16.2",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "in_array": "^1.1.0",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.2.13",
+    "mongoose-unique-validator": "^2.0.1",
+    "request": "^2.88.0",
+    "sha1": "^1.1.1",
+    "socket.io": "^2.1.1",
+    "sync": "^0.2.5"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}

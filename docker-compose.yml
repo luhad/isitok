@@ -1,0 +1,20 @@
+version: '3'
+services:
+
+  app:
+    image: node:8.12-slim
+    volumes:
+      - ./app:/back
+    working_dir: /back
+    command: sh -c 'apt-get update &&
+                    npm install &&
+                    node app.js'
+    ports:
+      - "7000:3000"
+    networks:
+      - all
+    environment:
+      MONGODB_URI: "mongodb://172.17.0.1/isitok"
+
+networks:
+  all:

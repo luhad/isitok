@@ -1,0 +1,33 @@
+version: '3'
+services:
+
+  app:
+    image: node:8.12-slim
+    volumes:
+      - ./app:/back
+    working_dir: /back
+    command: sh -c 'apt-get update &&
+                    npm install && 
+                    npm install -g nodemon &&
+                    nodemon app.js'
+    ports:
+      - "7000:3000"
+    depends_on:
+      - mongodb
+    networks:
+      - all
+    environment:
+      MONGODB_URI: "mongodb://mongodb/isitok"
+
+  mongodb:
+    image: mongo:latest
+    volumes:
+      - ./data/db:/data/db
+    ports:
+        - "27700:27017"
+    command: mongod --smallfiles --logpath=/dev/null
+    networks:
+      - all
+
+networks:
+  all:
