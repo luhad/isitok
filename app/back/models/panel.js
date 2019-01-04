@@ -5,6 +5,4 @@ const panelSchema = mongoose.Schema({
     logo: { type: String, required: false }
 })
 
-panelSchema.plugin(uniqueValidator)
-
 module.exports = mongoose.model('Panel', panelSchema, 'panel')

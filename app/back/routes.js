@@ -1,7 +1,8 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 const jwtHelper = require('./components/jwtHelper')
-const in_array = require('in_array');
+const in_array = require('in_array')
+const panelController = require('./controllers/panel')
 
 
 // Require controller modules.
@@ -18,5 +19,8 @@ router.use(function (req, res, next) {
 
 // login
 router.post('/login', authController.login);
+
+// panel
+router.get('/panel/list', panelController.list);
 
 module.exports = router;
