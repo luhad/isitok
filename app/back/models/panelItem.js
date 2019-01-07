@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 const panelItemSchema = mongoose.Schema({
     panel_id: { type: Schema.Types.ObjectId, ref: 'panel' },

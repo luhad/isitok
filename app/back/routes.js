@@ -22,5 +22,6 @@ router.post('/login', authController.login);
 
 // panel
 router.get('/panel/list', panelController.list);
+router.get('/panel/view/:id', panelController.view);
 
 module.exports = router;
