@@ -25,6 +25,7 @@ router.get('/test/sockettest', testController.sockettest);
 
 // panel
 router.get('/panel/list', panelController.list);
+router.get('/panel/view/:id', panelController.view);
 
 
 
