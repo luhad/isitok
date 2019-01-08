@@ -1,0 +1,21 @@
+<h1>Hello World</h1>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    // setup socket
+    var socket = io('http://0.0.0.0:7000');
+
+    // let's assume that the panel id is abc123, we are going to use it as room's id
+    var panelId = "abc123";
+
+    // let's establish the connection
+    socket.on('connect', function () {
+        // connected, let's sign-up for to receive messages for this room
+        socket.emit('letMeJoinThisRoom', panelId);
+    });
+
+    // log incoming message
+    socket.on('message', function (data) {
+        console.log('Incoming message from the room:', data);
+    });
+</script>

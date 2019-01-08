@@ -14,9 +14,6 @@ const server = app.listen(3000, () => {
   console.log('listening on *:3000');
 });
 
-// socket
-const io = require('socket.io')(server);
-
 // db
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
 
@@ -29,13 +26,17 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(express.static('static'));
 
-// Set socket.io listeners.
-io.on('connection', (socket) => {
-  console.log('a user connected');
+// socket
+const io = require('socket.io')(server);
 
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
+// set socket.io listeners.
+io.on('connection', (socket) => {
+  // once a client has connected, emitt a 'room' event asking to join this particular room
+  socket.on('letMeJoinThisRoom', function (room) {
+    socket.join(room);
   });
+
+  socket.on('disconnect', () => { });
 });
 
 // setup socket.io
@@ -47,8 +48,15 @@ app.use(function (req, res, next) {
 // routing
 app.use('/api', routes)
 
+// socket test
+app.use('/sockettest', express.static(path.join(__dirname, '/front/sockettest')))
+app.use((req, res, next) => {
+  res.sendFile(path.join(__dirname, 'sockettest', 'index.html'))
+})
+
 // front
-app.use('/', express.static(path.join(__dirname, '/front')))
+app.use('/', express.static(path.join(__dirname, '/front/dist')))
 app.use((req, res, next) => {
   res.sendFile(path.join(__dirname, 'front', 'index.html'))
 })
+

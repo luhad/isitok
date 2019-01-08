@@ -2,11 +2,11 @@ const express = require('express')
 const router = express.Router()
 const jwtHelper = require('./components/jwtHelper')
 const in_array = require('in_array')
-const panelController = require('./controllers/panel')
 
-
-// Require controller modules.
+// controllers
 const authController = require("./controllers/auth")
+const testController = require('./controllers/test')
+const panelController = require('./controllers/panel')
 
 // middleware authentication
 router.use(function (req, res, next) {
@@ -20,7 +20,13 @@ router.use(function (req, res, next) {
 // login
 router.post('/login', authController.login);
 
+// test
+router.get('/test/sockettest', testController.sockettest);
+
 // panel
 router.get('/panel/list', panelController.list);
+
+
+
 
 module.exports = router;
