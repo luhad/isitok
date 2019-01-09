@@ -95,5 +95,13 @@ typings/
 # Ignore all local history of files
 .history
 
+# phpstorm project files
+.idea
+.sublime-project
+.code-workspace
+
 # data folder
 /data/
+
+# data folder
+/jenkins_home/
